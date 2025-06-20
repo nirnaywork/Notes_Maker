@@ -245,12 +245,12 @@ def main():
         st.markdown("---")
         st.markdown("📋 **Conversion Features**")
         st.info("""
-        ✅ Auto-structured headings
-        ✅ Bullet point organization  
-        ✅ Summary generation
-        ✅ Action item extraction
-        ✅ Clean Markdown formatting
-        ✅ Notion-ready output
+        • Auto-structured headings
+        • Bullet point organization  
+        • Summary generation
+        • Action item extraction
+        • Clean Markdown formatting
+        • Notion-ready output
         """)
         
         # Clear history button
