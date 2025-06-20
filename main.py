@@ -83,7 +83,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 class NotionNotesConverter:
-    def __init__(self, api_token: str, model_name: str = "microsoft/DialoGPT-medium"):
+    def __init__(self, api_token: str, model_name: str = "gpt2"):
         self.api_token = api_token
         self.model_name = model_name
         self.api_url = f"https://api-inference.huggingface.co/models/{model_name}"
@@ -116,12 +116,11 @@ Always respond in clean Markdown format that would look great in Notion. Make th
         """Convert messy text to structured Notion-style notes"""
         
         # Create a focused prompt for note conversion
-        conversion_prompt = f"""{self.system_prompt}
+        conversion_prompt = f"""Convert the following messy text into clean, structured Notion-style notes with proper headings, bullet points, and formatting:
 
-**Raw Input to Convert:**
-{messy_text}
+Input: {messy_text}
 
-**Please convert this into clean, structured Notion-style notes with proper formatting:**"""
+Output:
         
         payload = {
             "inputs": conversion_prompt,
@@ -144,8 +143,8 @@ Always respond in clean Markdown format that would look great in Notion. Make th
             generated_text = result[0].get("generated_text", "")
             
             # Extract the response part
-            if "**Please convert this into clean, structured Notion-style notes with proper formatting:**" in generated_text:
-                response = generated_text.split("**Please convert this into clean, structured Notion-style notes with proper formatting:**")[1].strip()
+            if "Output:" in generated_text:
+                response = generated_text.split("Output:")[-1].strip()
             else:
                 response = generated_text.strip()
             
@@ -222,13 +221,18 @@ def main():
                 help="Enter your Hugging Face API token"
             )
         
-        # Model selection optimized for text generation
+        # Model selection - FREE models that work with API tokens
         model_options = [
-            "microsoft/DialoGPT-medium",
-            "microsoft/DialoGPT-large", 
-            "facebook/blenderbot-400M-distill",
-            "google/flan-t5-base",
-            "microsoft/DialoGPT-small"
+            "gpt2",
+            "gpt2-medium", 
+            "gpt2-large",
+            "distilgpt2",
+            "facebook/opt-350m",
+            "EleutherAI/gpt-neo-125M",
+            "EleutherAI/gpt-neo-1.3B",
+            "bigscience/bloom-560m",
+            "t5-small",
+            "t5-base"
         ]
         
         selected_model = st.selectbox(
