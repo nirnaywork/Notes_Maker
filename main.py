@@ -357,7 +357,7 @@ def main():
     
     # Footer with tips
     st.markdown("---")
-    st.markdown("### 💡 Tips for Best Results:")
+    st.markdown("### Tips for Best Results:")
     col1, col2 = st.columns(2)
     
     with col1:
@@ -380,7 +380,7 @@ def main():
     
     st.markdown("---")
     st.markdown(
-        "Built with ❤️ using [Streamlit](https://streamlit.io) and [Hugging Face](https://huggingface.co) | Perfect for [Notion](https://notion.so) users!",
+        "Built with love using Streamlit and Hugging Face | Perfect for Notion users!",
         unsafe_allow_html=True
     )
 
