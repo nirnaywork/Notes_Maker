@@ -365,7 +365,7 @@ def main():
         **Input Tips:**
         - Longer text works better
         - Include context and details
-        - Don't worry about formatting
+        - Do not worry about formatting
         - Mix different topics is OK
         """)
     
